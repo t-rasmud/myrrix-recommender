@@ -313,6 +313,7 @@ public final class TranslatingClientRecommender implements TranslatingRecommende
     }
   }
 
+  @SuppressWarnings("iteration:method.invocation")  // Iterator has next : Iterator guaranteed to have atleast one element
   private File copyAndTranslateToTempFile(Reader reader) throws IOException {
     File tempFile = File.createTempFile("myrrix-", ".csv.gz");
     tempFile.deleteOnExit();

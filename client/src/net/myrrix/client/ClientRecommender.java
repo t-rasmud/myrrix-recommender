@@ -595,6 +595,7 @@ public final class ClientRecommender implements MyrrixRecommender {
     throw savedException;
   }
 
+  @SuppressWarnings("iteration:method.invocation")  // Iterator has next : Iterator guaranteed to have atleast one element
   private static List<RecommendedItem> consumeItems(URLConnection connection) throws IOException {
     List<RecommendedItem> result = Lists.newArrayList();
     BufferedReader reader = IOUtils.bufferStream(connection.getInputStream());
@@ -967,6 +968,7 @@ public final class ClientRecommender implements MyrrixRecommender {
   }
 
   @Override
+  @SuppressWarnings("iteration:method.invocation")  // Iterator has next : Iterator guaranteed to have atleast one element
   public void ingest(Reader reader) throws TasteException {
     Map<Integer,Pair<Writer,HttpURLConnection>> writersAndConnections =
         Maps.newHashMapWithExpectedSize(partitions.size());
