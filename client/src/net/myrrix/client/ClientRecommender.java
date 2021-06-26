@@ -595,7 +595,7 @@ public final class ClientRecommender implements MyrrixRecommender {
     throw savedException;
   }
 
-  @SuppressWarnings("iteration:method.invocation")  // Iterator has next : Iterator guaranteed to have atleast one element
+  @SuppressWarnings("iteration:method.invocation")  // true positive : If the file read over the HTTP connection is malformed, `tokens.next()` will result in NoSuchElementException
   private static List<RecommendedItem> consumeItems(URLConnection connection) throws IOException {
     List<RecommendedItem> result = Lists.newArrayList();
     BufferedReader reader = IOUtils.bufferStream(connection.getInputStream());
@@ -968,7 +968,7 @@ public final class ClientRecommender implements MyrrixRecommender {
   }
 
   @Override
-  @SuppressWarnings("iteration:method.invocation")  // Iterator has next : Iterator guaranteed to have atleast one element
+  @SuppressWarnings("iteration:method.invocation")  // NoSuchElementException caught: catch block handles NoSuchElementException
   public void ingest(Reader reader) throws TasteException {
     Map<Integer,Pair<Writer,HttpURLConnection>> writersAndConnections =
         Maps.newHashMapWithExpectedSize(partitions.size());

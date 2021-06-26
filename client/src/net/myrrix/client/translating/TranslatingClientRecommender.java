@@ -313,7 +313,7 @@ public final class TranslatingClientRecommender implements TranslatingRecommende
     }
   }
 
-  @SuppressWarnings("iteration:method.invocation")  // Iterator has next : Iterator guaranteed to have atleast one element
+  @SuppressWarnings("iteration:method.invocation")  // true positive : If the file read over the HTTP connection is malformed, `it.next()` will result in NoSuchElementException
   private File copyAndTranslateToTempFile(Reader reader) throws IOException {
     File tempFile = File.createTempFile("myrrix-", ".csv.gz");
     tempFile.deleteOnExit();
